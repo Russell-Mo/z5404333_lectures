@@ -60,8 +60,8 @@ def print_df(df):
 # and then set the index using the .set_index method
 qan_naive_read  = '?'
 # <example>
-#qan_naive_read  = pd.read_csv(QAN_PRC_CSV)
-#qan_naive_read.set_index('Date', inplace=True)
+# qan_naive_read  = pd.read_csv(QAN_PRC_CSV)
+# qan_naive_read.set_index('Date', inplace=True)
 # </example>
 print_df(qan_naive_read)
 

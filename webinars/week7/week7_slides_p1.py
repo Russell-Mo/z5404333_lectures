@@ -144,7 +144,7 @@ bday = [
 # ----------------------------------------------------------------------------
 # Create a series object
 ser = pd.Series(data=prices, index=dates)
-#printit(ser, "The series `ser`:")
+printit(ser, "The series `ser`:")
 
 # ----------------------------------------------------------------------------
 #   the series look like this:
@@ -164,7 +164,7 @@ ser = pd.Series(data=prices, index=dates)
 
 # Data Frame with close and Bday columns
 df = pd.DataFrame(data={'close': ser, 'bday': bday}, index=dates)
-#printit(df, "The data frame `df`:")
+printit(df, "The data frame `df`:")
 
 # ----------------------------------------------------------------------------
 #   The DF looks like this 
@@ -220,7 +220,7 @@ df = pd.DataFrame(data={'close': ser, 'bday': bday}, index=dates)
 # The result will be 7.00
 
 label = '2020-01-10'
-res  = '?'
+res  = ser.loc['2020-01-10']
 printit(res, f"ser.loc[{label}]:")
 
 
@@ -254,7 +254,8 @@ label = '2020-01-30'
 #   2020-01-13    7.02  
 
 label_seq = ['2020-01-10', '2020-01-13']
-res  = '?'
+#res  = ser.loc[['2020-01-10', '2020-01-13']]
+res  = ser.loc[label_seq] # much easier to read than the above method and update
 printit(res, f"ser.loc[{label_seq}]")
 
 
@@ -295,7 +296,7 @@ label_seq = ['2020-01-10', '2020-01-11']
 # IMPORTANT: ENDPOINTS ARE INCLUDED!!!
 start = '2020-01-10'
 end = '2020-01-13'
-res  = '?'
+res  = ser.loc['2020-01-10':'2020-01-13']
 printit(res, f"ser.loc['{start}':'{end}']")
 
 
@@ -308,7 +309,7 @@ printit(res, f"ser.loc['{start}':'{end}']")
 
 start = '3020-01-10'
 end = '2020-01-13'
-res  = '?'
+res  = ser.loc['2020-01-10':'3020-01-13']
 # <example>
 #res = ser.loc[start:end]
 # </example>
@@ -363,9 +364,9 @@ printit(res, f"ser.loc['{start}':'{end}']")
 ser2 = ser.copy()
 
 # <example>
-#old_label = '2020-01-10' # NOTE: This label exists in the index
-#ser2.loc[old_label] = -99
-#printit(ser2, f"The ser2:")
+old_label = '2020-01-10' # NOTE: This label exists in the index
+ser2.loc[old_label] = -99
+printit(ser2, f"The ser2:")
 # </example>
 
 # Task: Suppose we want to add a new element to the series with
@@ -387,9 +388,9 @@ ser2 = ser.copy()
 
 # First try: Just use an assignment statement
 # <example>
-#new_label = '2020-01-11' # NOTE: This label does not exist
-#ser2.loc[new_label] = -99
-#printit(ser2, f"The new ser2:")
+new_label = '2020-01-11' # NOTE: This label does not exist
+ser2.loc[new_label] = -99
+printit(ser2, f"The new ser2:")
 # </example>
 
 # If what we did above was enough, the expression
@@ -405,10 +406,12 @@ ser2 = ser.copy()
 # However, this is NOT the case
 
 # <example>
-#start = '2020-01-10'
-#end = '2020-01-13'
-#res = ser2.loc[start:end]
-#printit(res, f"ser2.loc['{start}':'{end}'] \nNOTE: '2020-01-11' not included!")
+# ser2 = ser.sort_index() # --> new ser with sorted index
+ser2.sort_index(inplace=True) # --> None
+start = '2020-01-10'
+end = '2020-01-13'
+res = ser2.loc[start:end]
+printit(res, f"ser2.loc['{start}':'{end}'] \nNOTE: '2020-01-11' not included!")
 # </example>
 
 # 
@@ -458,7 +461,7 @@ ser2 = ser.copy()
 #
 # The result should be 7.16
 pos = 0
-res  = '?'
+res  = ser.iloc[0]
 printit(res, f"ser.iloc[{pos}]")
 
 # ------------------------------------------------------------
@@ -485,7 +488,7 @@ printit(res, f"ser.iloc[{pos}]")
 #   2020-01-06    7.00
 
 pos_seq = [0, 2]
-res = '?'
+res = ser.iloc[[0, 2]]
 printit(res, f"ser.iloc[{pos_seq}]")
 
 # ------------------------------------------------------------
@@ -518,7 +521,7 @@ printit(res, f"ser.iloc[{pos_seq}]")
 # Try it first!
 start = 0
 end = 2
-res  = '?'
+res  = ser.iloc[start:end]
 printit(res, f"ser.iloc[{start}:{end}]:")
 
 # 
@@ -527,9 +530,9 @@ printit(res, f"ser.iloc[{start}:{end}]:")
 #
 start = 0
 end = 100000
-res  = '?'
+res  = ser.iloc[start:end]
 # <example>
-#res = ser.iloc[start:end]
+res = ser.iloc[start:end]
 # </example>
 printit(res, f"ser.iloc[{start}:{end}]")
 
@@ -540,7 +543,7 @@ printit(res, f"ser.iloc[{start}:{end}]")
 #
 start = -1
 end = 0
-res = '?'
+res = ser.iloc[start:end:-1]
 # <example>
 #res = ser.iloc[start:end]
 # </example>
@@ -563,8 +566,8 @@ printit(res, f"ser.iloc[{start}:{end}]")
 # My advice: Always use either loc or iloc, not []
 
 # <example>
-#pos = 0
-#x1  = ser[pos] # -> Deprecation warning
+# pos = 0
+# x1  = ser[pos] # -> Deprecation warning
 #res = ser.iloc[pos]
 #printit(res, f"This is res")
 #printit(x1, f"This is x1")
@@ -643,8 +646,9 @@ printit(res, f"ser.iloc[{start}:{end}]")
 # df.loc[row label, col label] --> scalar
 rlabel = '2020-01-02'
 clabel = 'close'
-res  = '?'
+res  = df.loc[rlabel, clabel]
 printit(res, f"df.loc[{rlabel}, {clabel}]")
+
 
 # Task: Suppose we want to select the following SERIES
 # 
@@ -653,8 +657,8 @@ printit(res, f"df.loc[{rlabel}, {clabel}]")
 #   
 # df.loc[row label] --> df.loc[row label, :]
 # In both cases, the result is a SERIES
-res1 = '?'
-res2 = '?'
+res1 = df.loc['2020-01-02', 'close']
+res2 = df.loc['2020-01-02', 'bday']
 printit(res1, f"This is df.loc['{rlabel}', :]")
 printit(res2, f"This is df.loc['{rlabel}']")
 

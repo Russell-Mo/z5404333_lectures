@@ -359,11 +359,11 @@ def main():
 
 
     # --------------------------------------------------------
-    #  Example 1  
+    #  Example 1
     # --------------------------------------------------------
     # Uncomment to run example 1
 
-    #example1()
+    # example1()
 
     # --------------------------------------------------------
     #  Example 2  
@@ -371,7 +371,7 @@ def main():
     # Uncomment to run example 2 (please COMMENT all the previous function
     # calls, like example1(*))
 
-    #example2()
+    # example2()
 
     # --------------------------------------------------------
     #  Example 3  
@@ -379,7 +379,7 @@ def main():
     # Uncomment to run example 3 (please COMMENT all the previous function
     # calls: example1(), example2())
 
-    #example3()
+    # example3()
 
     # --------------------------------------------------------
     #  Example 4  
@@ -387,7 +387,7 @@ def main():
     # Uncomment to run example 3 (please COMMENT all the previous function
     # calls: example1(), example2(), example3())
 
-    #example4()
+    # example4()
 
     # --------------------------------------------------------
     #  Example 5  
@@ -395,7 +395,7 @@ def main():
     # Uncomment to run example 3 (please COMMENT all the previous function
     # calls: example1(), example2(), example3(), example4())
 
-    #example5()
+    # example5()
 
     # --------------------------------------------------------
     #  Example 6  
@@ -403,7 +403,7 @@ def main():
     # Uncomment to run example 3 (please COMMENT all the previous function
     # calls: example1(), ...
 
-    #example6()
+    # example6()
 
     # --------------------------------------------------------
     #  Example 7  
@@ -411,7 +411,7 @@ def main():
     # Uncomment to run example 3 (please COMMENT all the previous function
     # calls: example1(), ...
 
-    #example7()
+    # example7()
 
 if __name__ == "__main__":
     main()
