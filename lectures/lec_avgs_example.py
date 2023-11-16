@@ -44,17 +44,17 @@ prices = [
 # 0. In this case, `start` will be set to 2 and `end` will be set to 6.
 
 # Remember to uncomment the statements below and complete the part with '?' 
-start  = '?'
-end  = '?'
+start = dates.index('2020-01-06')
+end = dates.index('2020-01-10')
 #print(start, end)                   
 
 # Now, slice the `prices` list. 
 # Remember that slices do not include endpoints
-prcs_w1  = '?'
+prcs_w1  = prices[start:end+1]
 
 # Finally, calculate the average of the prices in the slice
-avgprc  = '?'
-#print(avgprc)                       
+avgprc  = sum(prcs_w1)/len(prcs_w1)
+print(avgprc)
 
 
 # ---------------------------------------------------------------------------- 
@@ -74,7 +74,7 @@ prc_dic = {
   }
 
 # Get the price on '2020-01-13', in this case, 7.02
-x  = '?'
+x  = prc_dic['2020-01-13']
 #print(f'The price on 2020-01-13 is {x}')    
 
 

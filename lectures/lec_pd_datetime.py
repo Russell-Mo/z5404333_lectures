@@ -22,7 +22,7 @@ CSVLOC = os.path.join(cfg.DATADIR, 'tsla_prc.csv')
 # returns an instance of `dt.datetime` representing the current date/time.
 
 # Instance of `dt.datetime` with the current date/time
-dt_now  = '?'
+dt_now  = dt.datetime.now()
 
 # This will produce a string representing the date/time in `dt_now`
 #print(dt_now) 
@@ -86,13 +86,13 @@ dt_now  = '?'
 #
 
 # Operations between datetime objects will return timedelta objects
-delta  = '?'
+delta  = dt1 - dt0
 #print(repr(delta)) 
 #print(delta) 
 
 
 # These two dates are 12 hours apart
-new_delta  = '?'
+new_delta  = dt.datetime(year=2020, month=12, day=31, hour=12) - dt.datetime(year=2020, month=12, day=31, hour=0)
 #print(new_delta) 
 
 
@@ -185,7 +185,7 @@ prc.info()
 # ----------------------------------------------------------------------------
 #   Setting the index
 # ----------------------------------------------------------------------------
-another_df  = '?'
+another_df  = prc.set_index('Date')
 #another_df.info() 
 
 # Override the variable with another dataframe
